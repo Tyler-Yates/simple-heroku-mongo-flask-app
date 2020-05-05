@@ -1,4 +1,4 @@
-# simple-mongo-flask-app
+# simple-heroku-mongo-flask-app
 A simple Heroku Flask application that connects to MongoDB.
 
 ## Prerequisites
