@@ -9,6 +9,9 @@ You will also need a [MongoDB](https://www.mongodb.com/) database to run this ap
 You can get a free MongoDB database by signing up for [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
 MongoDB Atlas has a free tier which includes a simple cluster deployment.
 
+You will need a [Python 3](https://www.python.org/about/) interpreter to run this application.
+The Python 3 interpreter should include the `venv` module.
+
 ## Setup
 You will need to create a virtual environment to run this application.
 Run the following commands at the root of this repo:
