@@ -17,12 +17,12 @@
         </tr>
         </thead>
         <tbody>
-        {%for document in documents%}
-        <tr>
-            <td><a href="/documents/{{ document['_id'] }}">{{ document['_id'] }}</a></td>
-            <td>{{ document["text"] }}</td>
-        </tr>
-        {%endfor%}
+        {% for document in documents %}
+            <tr>
+                <td><a href="/documents/{{ document['_id'] }}">{{ document['_id'] }}</a></td>
+                <td>{{ document["text"] }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 </div>

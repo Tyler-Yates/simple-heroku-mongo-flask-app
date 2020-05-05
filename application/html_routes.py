@@ -1,5 +1,3 @@
-from datetime import timezone
-
 from flask import render_template, redirect
 from flask_accept import accept
 
