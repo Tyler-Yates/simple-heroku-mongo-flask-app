@@ -2,8 +2,8 @@ from flask import render_template, redirect
 from flask_accept import accept
 
 from application import app, dao
-from application.api_routes import document_api_page, documents_api_page
-from application.models import TTL_SECONDS
+from application.routes.api_routes import document_api_page, documents_api_page
+from application.data.dao import TTL_SECONDS
 
 
 @app.route("/")
