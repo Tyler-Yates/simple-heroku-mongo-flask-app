@@ -1,3 +1,4 @@
+import datetime
 import os
 
 from bson import ObjectId
@@ -23,12 +24,13 @@ class ApplicationDao:
 
         self.test_collection: Collection = self.database.test_collection
         # Set a TTL on the test collection
-        self.test_collection.create_index('text', expireAfterSeconds=TTL_SECONDS)
+        self.test_collection.create_index('createdAt', expireAfterSeconds=TTL_SECONDS)
 
         print(f"Database collections: {self.database.list_collection_names()}")
 
     def insert_document(self, text: str) -> InsertOneResult:
         return self.test_collection.insert_one({
+            "createdAt": datetime.datetime.utcnow(),
             "text": text
         })
 
