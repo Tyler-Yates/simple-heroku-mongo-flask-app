@@ -3,7 +3,7 @@
 {% include 'head.html' %}
 <body>
 <div class="container">
-    <form action="/documents" enctype="application/x-www-form-urlencoded" method="post">
+    <form action="/api/v1/documents" enctype="application/x-www-form-urlencoded" method="post">
         <div class="form-group">
             <label for="document_text">Document Text</label>
             <input id="document_text" name="document_text" type="text" maxlength="1024" class="form-control"

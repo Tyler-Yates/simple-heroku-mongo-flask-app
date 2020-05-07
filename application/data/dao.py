@@ -17,17 +17,22 @@ ID_FIELD = "_id"
 
 
 class ApplicationDao:
-    def __init__(self):
-        username = os.environ.get("MONGO_USER")
-        password = os.environ.get("MONGO_PASSWORD")
-        host = os.environ.get("MONGO_HOST")
-        self.client = MongoClient(
-            f"mongodb+srv://{username}:{password}@{host}/test?retryWrites=true&w=majority"
-        )
+    def __init__(self, database: Database = None):
+        # If no database provided, connect to one
+        if database is None:
+            username = os.environ.get("MONGO_USER")
+            password = os.environ.get("MONGO_PASSWORD")
+            host = os.environ.get("MONGO_HOST")
+            self.client = MongoClient(
+                f"mongodb+srv://{username}:{password}@{host}/test?retryWrites=true&w=majority"
+            )
 
-        self.database: Database = self.client.test
+            database: Database = self.client.test
 
-        self.test_collection: Collection = self.database.test_collection
+        # Set up database and collection variables
+        self.database = database
+        self.test_collection: Collection = database.test_collection
+
         # Set a TTL on the test collection
         self.test_collection.create_index(CREATED_AT_FIELD, expireAfterSeconds=TTL_SECONDS)
 
