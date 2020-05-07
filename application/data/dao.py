@@ -23,9 +23,7 @@ class ApplicationDao:
             username = os.environ.get("MONGO_USER")
             password = os.environ.get("MONGO_PASSWORD")
             host = os.environ.get("MONGO_HOST")
-            self.client = MongoClient(
-                f"mongodb+srv://{username}:{password}@{host}/test?retryWrites=true&w=majority"
-            )
+            self.client = MongoClient(f"mongodb+srv://{username}:{password}@{host}/test?retryWrites=true&w=majority")
 
             database: Database = self.client.test
 
@@ -39,23 +37,16 @@ class ApplicationDao:
         print(f"Database collections: {self.database.list_collection_names()}")
 
     def insert_document(self, text: str) -> InsertOneResult:
-        return self.test_collection.insert_one({
-            CREATED_AT_FIELD: datetime.datetime.utcnow(),
-            TEXT_FIELD: text
-        })
+        return self.test_collection.insert_one({CREATED_AT_FIELD: datetime.datetime.utcnow(), TEXT_FIELD: text})
 
     def get_documents(self):
         return self.test_collection.find()
 
     def get_document(self, document_id) -> dict:
-        return self.test_collection.find_one({
-            ID_FIELD: ObjectId(document_id)
-        })
+        return self.test_collection.find_one({ID_FIELD: ObjectId(document_id)})
 
     def delete_document(self, document_id):
-        return self.test_collection.delete_one({
-            ID_FIELD: ObjectId(document_id)
-        })
+        return self.test_collection.delete_one({ID_FIELD: ObjectId(document_id)})
 
     def delete_documents(self):
         return self.test_collection.delete_many({})

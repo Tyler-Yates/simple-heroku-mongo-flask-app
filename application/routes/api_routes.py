@@ -1,9 +1,9 @@
-from flask import request, jsonify, redirect, Blueprint, current_app
+from flask import Blueprint, current_app, jsonify, redirect, request
 from flask_accept import accept
 
 from application.data.dao import ID_FIELD, ApplicationDao
 
-API_BLUEPRINT = Blueprint('routes.api', __name__, url_prefix='/api/v1/')
+API_BLUEPRINT = Blueprint("routes.api", __name__, url_prefix="/api/v1/")
 
 
 @API_BLUEPRINT.route("/documents")
@@ -22,7 +22,7 @@ def document_api_page(document_id):
 
 
 @API_BLUEPRINT.route("/documents", methods=["POST"])
-@accept('application/json')
+@accept("application/json")
 def add_document_api_json():
     json_data = None
     if request.json:
@@ -36,7 +36,7 @@ def add_document_api_json():
 
 
 @API_BLUEPRINT.route("/documents", methods=["POST"])
-@add_document_api_json.support('application/x-www-form-urlencoded', 'multipart/form-data', 'text/html')
+@add_document_api_json.support("application/x-www-form-urlencoded", "multipart/form-data", "text/html")
 def add_document_api_form():
     form_data = None
     if request.form:

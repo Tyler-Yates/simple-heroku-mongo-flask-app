@@ -1,9 +1,8 @@
-from flask import render_template, redirect, Blueprint, current_app
-from flask_accept import accept
+from flask import Blueprint, current_app, redirect, render_template
 
 from application.data.dao import TTL_SECONDS, ApplicationDao
 
-HTML_BLUEPRINT = Blueprint('routes.html', __name__)
+HTML_BLUEPRINT = Blueprint("routes.html", __name__)
 
 
 @HTML_BLUEPRINT.route("/")
