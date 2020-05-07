@@ -62,6 +62,19 @@ You can use the following command to open the Heroku deployment in your browser:
 heroku open
 ```
 
+## Tests
+You can use [tox](https://tox.readthedocs.io/en/latest/) to run the tests in this repo.
+
+First, install tox in the virutal environment:
+```
+pip install tox
+```
+
+Next, simply run `tox` in the root of the repo.
+In addition to running the unit tests, code linting and formatting will be performed.
+Tox is configured to use [isort](https://github.com/timothycrosley/isort), [black](https://github.com/psf/black),
+and [flake8](https://flake8.pycqa.org/en/latest/).
+
 ## Database
 This application creates a database called `test`.
 It also creates a collection in that database called `test_collection`.
