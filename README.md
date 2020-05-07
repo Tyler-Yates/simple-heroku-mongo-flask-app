@@ -71,8 +71,8 @@ pip install tox
 ```
 
 Next, simply run `tox` in the root of the repo.
-In addition to running the unit tests, code linting and formatting will be performed.
-Tox is configured to use [isort](https://github.com/timothycrosley/isort), [black](https://github.com/psf/black),
+In addition to running the unit tests, code linting and formatting will be performed using
+[isort](https://github.com/timothycrosley/isort), [black](https://github.com/psf/black),
 and [flake8](https://flake8.pycqa.org/en/latest/).
 
 ## Database
