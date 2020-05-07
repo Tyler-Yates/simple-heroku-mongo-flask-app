@@ -65,7 +65,7 @@ heroku open
 ## Tests
 You can use [tox](https://tox.readthedocs.io/en/latest/) to run the tests in this repo.
 
-First, install tox in the virutal environment:
+First, install tox in the virtual environment:
 ```
 pip install tox
 ```
