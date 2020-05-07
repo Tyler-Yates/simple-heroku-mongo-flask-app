@@ -10,6 +10,11 @@ from pymongo.results import InsertOneResult
 # Set the documents to expire after a set amount of time
 TTL_SECONDS = 6 * 60 * 60
 
+# Fields used in the database
+CREATED_AT_FIELD = "createdAt"
+TEXT_FIELD = "text"
+ID_FIELD = "_id"
+
 
 class ApplicationDao:
     def __init__(self):
@@ -24,14 +29,14 @@ class ApplicationDao:
 
         self.test_collection: Collection = self.database.test_collection
         # Set a TTL on the test collection
-        self.test_collection.create_index('createdAt', expireAfterSeconds=TTL_SECONDS)
+        self.test_collection.create_index(CREATED_AT_FIELD, expireAfterSeconds=TTL_SECONDS)
 
         print(f"Database collections: {self.database.list_collection_names()}")
 
     def insert_document(self, text: str) -> InsertOneResult:
         return self.test_collection.insert_one({
-            "createdAt": datetime.datetime.utcnow(),
-            "text": text
+            CREATED_AT_FIELD: datetime.datetime.utcnow(),
+            TEXT_FIELD: text
         })
 
     def get_documents(self):
@@ -39,12 +44,12 @@ class ApplicationDao:
 
     def get_document(self, document_id) -> dict:
         return self.test_collection.find_one({
-            "_id": ObjectId(document_id)
+            ID_FIELD: ObjectId(document_id)
         })
 
     def delete_document(self, document_id):
         return self.test_collection.delete_one({
-            "_id": ObjectId(document_id)
+            ID_FIELD: ObjectId(document_id)
         })
 
     def delete_documents(self):

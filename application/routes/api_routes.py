@@ -2,6 +2,7 @@ from flask import request, jsonify, redirect
 from flask_accept import accept
 
 from application import app, dao
+from application.data.dao import ID_FIELD
 
 
 @app.route("/documents")
@@ -30,7 +31,7 @@ def add_document_api_json():
 
     if json_data:
         inserted_document = dao.insert_document(json_data)
-        return jsonify({"_id": str(inserted_document.inserted_id)}), 201
+        return jsonify({ID_FIELD: str(inserted_document.inserted_id)}), 201
     else:
         return _as_json("Document must have text!"), 400
 
