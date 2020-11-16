@@ -1,6 +1,6 @@
 from flask import Blueprint, current_app, redirect, render_template
 
-from application.data.dao import TTL_SECONDS, ApplicationDao
+from application.data.document_dao import TTL_SECONDS, DocumentDao
 
 HTML_BLUEPRINT = Blueprint("routes.html", __name__)
 
@@ -41,5 +41,5 @@ def add_document_page():
     return render_template("create_document.html")
 
 
-def _get_dao() -> ApplicationDao:
+def _get_dao() -> DocumentDao:
     return current_app.config["DB"]

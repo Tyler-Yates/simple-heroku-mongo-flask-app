@@ -8,7 +8,7 @@ from pymongo.database import Database
 from pymongo.results import InsertOneResult
 
 # Set the documents to expire after a set amount of time
-TTL_SECONDS = 6 * 60 * 60
+TTL_SECONDS = 6 * 60 * 60  # expire after 6 hours
 
 # Fields used in the database
 CREATED_AT_FIELD = "createdAt"
@@ -16,7 +16,7 @@ TEXT_FIELD = "text"
 ID_FIELD = "_id"
 
 
-class ApplicationDao:
+class DocumentDao:
     def __init__(self, database: Database = None):
         # If no database provided, connect to one
         if database is None:

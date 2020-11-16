@@ -1,7 +1,7 @@
 from flask import Blueprint, current_app, jsonify, redirect, request
 from flask_accept import accept
 
-from application.data.dao import ID_FIELD, ApplicationDao
+from application.data.document_dao import DocumentDao
 
 API_BLUEPRINT = Blueprint("routes.api", __name__, url_prefix="/api/v1/")
 
@@ -22,21 +22,7 @@ def document_api_page(document_id):
 
 
 @API_BLUEPRINT.route("/documents", methods=["POST"])
-@accept("application/json")
-def add_document_api_json():
-    json_data = None
-    if request.json:
-        json_data = request.json.get("document_text", None)
-
-    if json_data:
-        inserted_document = _get_dao().insert_document(json_data)
-        return jsonify({ID_FIELD: str(inserted_document.inserted_id)}), 201
-    else:
-        return _as_json("Document must have text!"), 400
-
-
-@API_BLUEPRINT.route("/documents", methods=["POST"])
-@add_document_api_json.support("application/x-www-form-urlencoded", "multipart/form-data", "text/html")
+@accept("application/x-www-form-urlencoded", "multipart/form-data", "text/html")
 def add_document_api_form():
     form_data = None
     if request.form:
@@ -53,5 +39,5 @@ def _as_json(message: str) -> str:
     return jsonify({"message": message})
 
 
-def _get_dao() -> ApplicationDao:
+def _get_dao() -> DocumentDao:
     return current_app.config["DB"]
