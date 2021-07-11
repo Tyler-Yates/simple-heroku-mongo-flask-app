@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, redirect, render_template
 
 from application.data.document_dao import TTL_SECONDS, DocumentDao
 
-HTML_BLUEPRINT = Blueprint("routes.html", __name__)
+HTML_BLUEPRINT = Blueprint("routes_html", __name__)
 
 
 @HTML_BLUEPRINT.route("/")

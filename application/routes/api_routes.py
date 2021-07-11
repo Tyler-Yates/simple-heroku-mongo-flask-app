@@ -3,7 +3,7 @@ from flask_accept import accept
 
 from application.data.document_dao import DocumentDao
 
-API_BLUEPRINT = Blueprint("routes.api", __name__, url_prefix="/api/v1/")
+API_BLUEPRINT = Blueprint("routes_api", __name__, url_prefix="/api/v1/")
 
 
 @API_BLUEPRINT.route("/documents")
